@@ -78,6 +78,19 @@ def mostrarlistas(lista):
     for elemento in lista:
         fila = fila+", " + elemento.nombre
     print( fila)
+
+def buscarOrigen(listaE,listaU, unidad):
+    #revisar la lista de unidades donde unidad = u.nombre
+    #hasta encontrar el edificio donde se crea, y lo retorna
+    return
+def calcularSegundos(unidadCreada, segundosActuales, listaE, listaU):
+    #teniendo la unidad que fue creada, buscar en las listas de edificios o unidades
+    #donde unidadCreada=e.nombre o u.nombre y sumar segundosActuales+ o.costoTiempo
+    return
+
+def buscarUnidad(listaE, listaU, unidad):
+    #revisar las listas y verificar si la unidad puede ser creada
+    return
 #algoritmo
 #listas temporales
 listaEdificios=[]
