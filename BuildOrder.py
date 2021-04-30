@@ -53,6 +53,16 @@ recolectores=6
 unidades=[]
 #funciones
 
+def buscarUnidad(listaU, unidad):
+    for unidades in listaU:
+        if unidad== unidades.nombre:
+            return unidades
+    return "no se encuentra la unidad"
+def buscarEdificio(listaE, unidad):
+    for edificio in listaE:
+        if unidad== edificio.nombre:
+            return edificio
+    return "no se encuentra el edificio"
 
 def leerArchivo(listaE, listaU, nombreArchivo):
     f = open ('prueba.txt','r')
@@ -80,17 +90,60 @@ def mostrarlistas(lista):
     print( fila)
 
 def buscarOrigen(listaE,listaU, unidad):
+    u=buscarUnidad(listaU, unidad)
+    e=buscarEdificio(listaE, u.origen)
+    return e.nombre
     #revisar la lista de unidades donde unidad = u.nombre
     #hasta encontrar el edificio donde se crea, y lo retorna
-    return
-def calcularSegundos(unidadCreada, segundosActuales, listaE, listaU):
+    return "no se encuentra"
+
+def calcularSegundos(unidadCreada, segundosActuales, listaE, listaU, tipo):
+    if tipo =="e":
+        e=buscarEdificio(listaE, unidadCreada)
+        segundosActuales=segundosActuales+e.costoTiempo
+        return segundosActuales
+    elif tipo=="u":
+        buscarUnidad(listaU, unidadCreada)
+        segundosActuales= segundosActuales + u.costoTiempo
+        return segundosActuales
     #teniendo la unidad que fue creada, buscar en las listas de edificios o unidades
     #donde unidadCreada=e.nombre o u.nombre y sumar segundosActuales+ o.costoTiempo
-    return
+    return segundosActuales
 
-def buscarUnidad(listaE, listaU, unidad):
+def calcularMinerales(unidad, listaE, listaU, minerales, mineralesPorSegundos, tipo):
+    if tipo=="e":
+        e=buscarEdificio(listaE, unidad)
+        minerales=minerales - e.costoMineral
+        minerales= minerales + (mineralesPorSegundos*e.costoTiempo)
+        return minerales
+    elif tipo=="u":
+        u=buscarUnidad(listaU, unidad)
+        minerales=minerales - u.costoMineral
+        minerales=minerales +( mineralesPorSegundos*u.costoTiempo)
+        return minerales
+
+def calcularGases():
+
+def calcularCapacidad():
+
+def calcularMineralesPorSegundo():
+def calcularGasesPorSegundo():
+
+
+
+def buscarUnidadParaCrear(listaET, listaU, unidad):
+    origen=""
+    for unidades in listaU:
+        if unidad== unidades.nombre:
+            origen = unidades.origen
+    for edificio in listaE:
+        if origen == edificio.nombre:
+            return True
     #revisar las listas y verificar si la unidad puede ser creada
-    return
+    #pero la listaET es la lista que se esta usando en el momento 
+    #dentro del algoritmo
+    #y la unidad es el nombre string
+    return False
 #algoritmo
 #listas temporales
 listaEdificios=[]
